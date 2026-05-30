@@ -1,0 +1,19 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Trigger PythonAnywhere reload
+        run: |
+          curl -X POST \
+            "https://www.pythonanywhere.com/api/v0/user/kibret/webapps/kibret.pythonanywhere.com/reload/" \
+            -H "Authorization: Token ${{ secrets.PYTHONANYWHERE_TOKEN }}"
