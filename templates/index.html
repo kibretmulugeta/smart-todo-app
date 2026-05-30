@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Todo - Time-Aware Task Manager</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Smart Todo</h1>
+            <p>Intelligent task scheduling with time logic</p>
+        </header>
+
+        <!-- Add Task Form -->
+        <div class="card">
+            <h2>➕ Add Smart Task</h2>
+            <form id="taskForm">
+                <input type="text" id="taskTitle" placeholder="Task title" required>
+                <textarea id="taskDesc" placeholder="Description (optional)"></textarea>
+                
+                <select id="category" required>
+                    <option value="">Select category</option>
+                </select>
+                
+                <select id="timeType" onchange="showTimeFields()">
+                    <option value="once">🗓️ One-time (specific date/time)</option>
+                    <option value="duration">⏱️ Duration-based (remind me in X hours)</option>
+                    <option value="recurring">🔄 Recurring (every X days/weeks)</option>
+                </select>
+                
+                <div id="dynamicFields"></div>
+                
+                <button type="submit">Create Smart Task</button>
+            </form>
+        </div>
+
+        <!-- Task Dashboard -->
+        <div class="card">
+            <h2>📋 Your Tasks</h2>
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('pending')">Pending</button>
+                <button class="tab" onclick="showTab('completed')">Completed</button>
+                <button class="tab" onclick="showTab('overdue')">Overdue</button>
+            </div>
+            <div id="taskList" class="task-list">
+                <div class="loading">Loading tasks...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
